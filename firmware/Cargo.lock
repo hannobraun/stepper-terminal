@@ -643,6 +643,7 @@ name = "stepper-terminal-firmware"
 version = "0.1.0"
 dependencies = [
  "cortex-m-rtic",
+ "heapless",
  "lpc8xx-hal",
  "panic-rtt-target",
  "rtt-target",
