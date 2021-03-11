@@ -4,3 +4,6 @@ version = "0.1.0"
 authors = ["Hanno Braun <hanno@braun-embedded.com>"]
 edition = "2018"
 publish = false
+
+[dependencies]
+clap = "3.0.0-beta.2"
