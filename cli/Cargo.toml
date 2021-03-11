@@ -6,5 +6,6 @@ edition = "2018"
 publish = false
 
 [dependencies]
+anyhow = "*"
 clap = "3.0.0-beta.2"
 serialport = "*"
