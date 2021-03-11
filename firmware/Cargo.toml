@@ -1,0 +1,22 @@
+[package]
+name    = "stepper-terminal-firmware"
+version = "0.1.0"
+authors = ["Hanno Braun <hanno@braun-embedded.com>"]
+edition = "2018"
+
+
+[dependencies]
+cortex-m-rtic = "0.6.0-alpha.1"
+
+[dependencies.lpc8xx-hal]
+git      = "https://github.com/lpc-rs/lpc8xx-hal.git"
+features = ["845m301jhi48", "845-rt"]
+
+[dependencies.panic-rtt-target]
+version  = "0.1.1"
+features = ["cortex-m"]
+
+# 0.3.0 is available, but `panic-rtt-target` depends on the older one.
+[dependencies.rtt-target]
+version  = "0.2.2"
+features = ["cortex-m"]
