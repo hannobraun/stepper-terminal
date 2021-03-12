@@ -10,7 +10,8 @@ fn main() -> anyhow::Result<()> {
     println!("{:?}", args);
 
     let port = serial::find_port()?;
-    println!("LPC845-BRK port found: {}", port.port_name);
+    let mut port = serialport::new(port.port_name, 115_200).open()?;
+    writeln!(port, "Hello, world!")?;
 
     Ok(())
 }
