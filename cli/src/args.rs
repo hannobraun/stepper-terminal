@@ -15,6 +15,14 @@ pub enum Command {
     Step(Step),
 }
 
+impl From<Command> for protocol::Command {
+    fn from(command: Command) -> Self {
+        match command {
+            Command::Step(step) => Self::Step(step.into()),
+        }
+    }
+}
+
 #[derive(Clap, Debug)]
 pub struct Step {
     /// The direction to move into ("forward"/"backward")
@@ -30,10 +38,29 @@ pub struct Step {
     pub delay: u32,
 }
 
+impl From<Step> for protocol::Step {
+    fn from(step: Step) -> Self {
+        Self {
+            direction: step.direction.into(),
+            steps: step.steps,
+            delay: step.delay,
+        }
+    }
+}
+
 #[derive(Clap, Debug)]
 pub enum Direction {
     Forward,
     Backward,
+}
+
+impl From<Direction> for protocol::Direction {
+    fn from(direction: Direction) -> Self {
+        match direction {
+            Direction::Forward => Self::Forward,
+            Direction::Backward => Self::Backward,
+        }
+    }
 }
 
 impl FromStr for Direction {
