@@ -21,3 +21,9 @@ features = ["cortex-m"]
 [dependencies.rtt-target]
 version  = "0.2.2"
 features = ["cortex-m"]
+
+
+# The additional optimization ends up being faster, due to the time saved
+# flashing the firmware.
+[profile.dev]
+opt-level = 3
