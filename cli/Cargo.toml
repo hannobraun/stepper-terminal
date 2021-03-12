@@ -7,8 +7,9 @@ publish = false
 
 
 [dependencies]
-anyhow = "*"
-clap = "3.0.0-beta.2"
+anyhow     = "*"
+clap       = "3.0.0-beta.2"
+postcard   = "*"
 serialport = "*"
 
 [dependencies.protocol]

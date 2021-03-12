@@ -7,7 +7,8 @@ edition = "2018"
 
 [dependencies]
 cortex-m-rtic = "0.6.0-alpha.1"
-heapless = "0.6.1"
+heapless      = "0.6.1"
+postcard      = "*"
 
 [dependencies.lpc8xx-hal]
 git      = "https://github.com/lpc-rs/lpc8xx-hal.git"
