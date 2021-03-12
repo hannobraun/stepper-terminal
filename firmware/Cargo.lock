@@ -535,6 +535,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "protocol"
+version = "0.1.0"
+dependencies = [
+ "postcard",
+ "serde",
+]
+
+[[package]]
 name = "quote"
 version = "1.0.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -697,6 +705,7 @@ dependencies = [
  "lpc8xx-hal",
  "panic-rtt-target",
  "postcard",
+ "protocol",
  "rtt-target",
 ]
 

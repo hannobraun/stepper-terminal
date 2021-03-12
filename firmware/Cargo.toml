@@ -18,6 +18,9 @@ features = ["845m301jhi48", "845-rt"]
 version  = "0.1.1"
 features = ["cortex-m"]
 
+[dependencies.protocol]
+path = "../protocol"
+
 # 0.3.0 is available, but `panic-rtt-target` depends on the older one.
 [dependencies.rtt-target]
 version  = "0.2.2"
