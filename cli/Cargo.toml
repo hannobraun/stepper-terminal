@@ -5,7 +5,11 @@ authors = ["Hanno Braun <hanno@braun-embedded.com>"]
 edition = "2018"
 publish = false
 
+
 [dependencies]
 anyhow = "*"
 clap = "3.0.0-beta.2"
 serialport = "*"
+
+[dependencies.protocol]
+path = "../protocol"
