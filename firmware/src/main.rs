@@ -5,8 +5,6 @@ use panic_rtt_target as _;
 
 #[rtic::app(device = lpc8xx_hal::pac, peripherals = false)]
 mod app {
-    use core::str;
-
     use heapless::{
         consts::U128,
         spsc::{self, Queue},
@@ -21,6 +19,7 @@ mod app {
             state::{AsyncMode, Enabled},
         },
     };
+    use protocol::Command;
     use rtt_target::{rprint, rprintln};
 
     #[resources]
@@ -96,14 +95,14 @@ mod app {
         loop {
             while let Some(word) = usart.dequeue() {
                 buf.push(word).unwrap();
-            }
 
-            match str::from_utf8(&buf) {
-                Ok(s) => {
-                    rprint!("{}", s);
-                    buf.clear()
+                if word == 0 {
+                    let command: Command =
+                        postcard::from_bytes_cobs(&mut buf).unwrap();
+                    buf.clear();
+
+                    rprintln!("{:?}", command);
                 }
-                Err(err) => assert_eq!(err.valid_up_to(), buf.len()),
             }
         }
     }
