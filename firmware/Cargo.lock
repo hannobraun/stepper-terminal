@@ -778,13 +778,16 @@ name = "stepper-terminal-firmware"
 version = "0.1.0"
 dependencies = [
  "cortex-m-rtic",
+ "fixed",
  "heapless 0.6.1",
  "lpc8xx-hal",
+ "num-traits",
  "panic-rtt-target",
  "postcard",
  "protocol",
  "rtt-target",
  "stepper",
+ "typenum",
 ]
 
 [[package]]

@@ -7,13 +7,19 @@ edition = "2018"
 
 [dependencies]
 cortex-m-rtic = "0.6.0-alpha.1"
+fixed         = "*"
 heapless      = "*"
 postcard      = "*"
 stepper       = "*"
+typenum       = "*"
 
 [dependencies.lpc8xx-hal]
 git      = "https://github.com/lpc-rs/lpc8xx-hal.git"
 features = ["845m301jhi48", "845-rt"]
+
+[dependencies.num-traits]
+version          = "*"
+default-features = false
 
 [dependencies.panic-rtt-target]
 version  = "*"
