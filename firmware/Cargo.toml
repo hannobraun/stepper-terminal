@@ -7,7 +7,7 @@ edition = "2018"
 
 [dependencies]
 cortex-m-rtic = "0.6.0-alpha.1"
-heapless      = "0.6.1"
+heapless      = "*"
 postcard      = "*"
 stepper       = "*"
 
@@ -16,7 +16,7 @@ git      = "https://github.com/lpc-rs/lpc8xx-hal.git"
 features = ["845m301jhi48", "845-rt"]
 
 [dependencies.panic-rtt-target]
-version  = "0.1.1"
+version  = "*"
 features = ["cortex-m"]
 
 [dependencies.protocol]
