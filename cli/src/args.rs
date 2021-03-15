@@ -34,7 +34,7 @@ pub struct Step {
     pub steps: u32,
 
     /// The delay between steps in milliseconds
-    #[clap(long, default_value = "100")]
+    #[clap(long, default_value = "10")]
     pub delay: u32,
 }
 
