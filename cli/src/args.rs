@@ -12,12 +12,16 @@ pub struct Args {
 pub enum Command {
     /// Step the stepper motor
     Step(Step),
+
+    /// Move to a position, while respecting a maximum speed
+    MoveTo(MoveTo),
 }
 
 impl From<Command> for protocol::Command {
     fn from(command: Command) -> Self {
         match command {
             Command::Step(step) => Self::Step(step.into()),
+            Command::MoveTo(move_to) => Self::MoveTo(move_to.into()),
         }
     }
 }
@@ -45,6 +49,25 @@ impl From<Step> for protocol::Step {
             direction,
             steps: step.steps.abs() as u32,
             delay: step.delay,
+        }
+    }
+}
+
+#[derive(Clap, Debug)]
+pub struct MoveTo {
+    /// The target step (absolute position)
+    pub target_step: i32,
+
+    /// The maximum speed in steps per second
+    #[clap(short, long, default_value = "1000")]
+    pub max_speed: u16,
+}
+
+impl From<MoveTo> for protocol::MoveTo {
+    fn from(move_to: MoveTo) -> Self {
+        Self {
+            target_step: move_to.target_step,
+            max_speed: move_to.max_speed,
         }
     }
 }

@@ -226,6 +226,28 @@ mod app {
                                 delay.delay_ms(step.delay);
                             }
                         }
+                        Command::MoveTo(move_to) => {
+                            // There are two sources of panics in the following
+                            // code:
+                            // 1. Errors from the `OutputPin` or `CountDown`
+                            //    implementations.
+                            // 2. Errors while converting from nanoseconds to
+                            //    timer ticks, or seconds to timer ticks.
+                            //
+                            // All our trait implementations are infallible, so
+                            // 1. shouldn't happen. 2. also shouldn't happen, as
+                            // we're using reasonable values that should be well
+                            // within the bounds of the data types. Detailed
+                            // analysis hasn't happened though, so panics for
+                            // that reason can't be rules out.
+                            stepper
+                                .move_to_position(
+                                    Num::from_num(move_to.max_speed),
+                                    move_to.target_step,
+                                )
+                                .wait()
+                                .unwrap();
+                        }
                     }
                 }
             }
