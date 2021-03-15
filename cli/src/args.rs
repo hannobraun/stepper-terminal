@@ -25,7 +25,7 @@ impl From<Command> for protocol::Command {
 #[derive(Clap, Debug)]
 pub struct Step {
     /// The number of steps to take (negative value means backward movement)
-    #[clap(short, long, default_value = "1")]
+    #[clap(short, long, default_value = "200")]
     pub steps: i32,
 
     /// The delay between steps in milliseconds
