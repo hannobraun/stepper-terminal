@@ -761,8 +761,7 @@ checksum = "a8f112729512f8e442d81f95a8a7ddf2b7c6b8a1a6f509a95864142b30cab2d3"
 [[package]]
 name = "stepper"
 version = "0.5.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2915f3828fcc8865b4f0adee7252b6273cb2bb1bc7bb48b1afcc281eed4eb265"
+source = "git+https://github.com/flott-motion/stepper.git?branch=main#f06ea6ee1739ea13ee378227c4bb1fba291e0e51"
 dependencies = [
  "embedded-hal 1.0.0-alpha.4",
  "embedded-time",
