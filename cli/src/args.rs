@@ -1,6 +1,5 @@
-use std::str::FromStr;
-
 use clap::Clap;
+use protocol::Direction;
 
 #[derive(Clap, Debug)]
 #[clap(name = "Stepper Terminal")]
@@ -25,13 +24,9 @@ impl From<Command> for protocol::Command {
 
 #[derive(Clap, Debug)]
 pub struct Step {
-    /// The direction to move into ("forward"/"backward")
-    #[clap(short, long, default_value = "forward")]
-    pub direction: Direction,
-
-    /// The number of steps to take
+    /// The number of steps to take (negative value means backward movement)
     #[clap(short, long, default_value = "1")]
-    pub steps: u32,
+    pub steps: i32,
 
     /// The delay between steps in milliseconds
     #[clap(long, default_value = "10")]
@@ -40,37 +35,16 @@ pub struct Step {
 
 impl From<Step> for protocol::Step {
     fn from(step: Step) -> Self {
+        let direction = if step.steps >= 0 {
+            Direction::Forward
+        } else {
+            Direction::Backward
+        };
+
         Self {
-            direction: step.direction.into(),
-            steps: step.steps,
+            direction,
+            steps: step.steps.abs() as u32,
             delay: step.delay,
-        }
-    }
-}
-
-#[derive(Clap, Debug)]
-pub enum Direction {
-    Forward,
-    Backward,
-}
-
-impl From<Direction> for protocol::Direction {
-    fn from(direction: Direction) -> Self {
-        match direction {
-            Direction::Forward => Self::Forward,
-            Direction::Backward => Self::Backward,
-        }
-    }
-}
-
-impl FromStr for Direction {
-    type Err = String;
-
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        match s {
-            "forward" => Ok(Self::Forward),
-            "backward" => Ok(Self::Backward),
-            invalid => Err(invalid.to_owned()),
         }
     }
 }
