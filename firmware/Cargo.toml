@@ -39,5 +39,9 @@ branch = "main"
 
 # The additional optimization ends up being faster, due to the time saved
 # flashing the firmware.
+#
+# Not sure why debug assertions need to be disabled, but with them enabled, the
+# motion control code becomes too slow to handle moderate motor speeds.
 [profile.dev]
 opt-level = 3
+debug-assertions = false
