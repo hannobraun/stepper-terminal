@@ -91,9 +91,9 @@ If you're getting value out of this project, Stepper or other libraries from the
 
 ## License
 
-This project is open source software, licensed under the terms of the [Zero Clause BSD License] (0BSD, for short). This basically means you can do anything with the software, without any restrictions, but you can't hold the authors liable for problems.
+This project is open source software, licensed under the terms of the [Zero Clause BSD License](https://opensource.org/licenses/0BSD) (0BSD, for short). This basically means you can do anything with the software, without any restrictions, but you can't hold the authors liable for problems.
 
-See [LICENSE.md] for full details.
+See [LICENSE.md](https://github.com/flott-motion/stepper-terminal/blob/main/LICENSE.md) for full details.
 
 
 [LPC845-BRK]: https://www.nxp.com/products/processors-and-microcontrollers/arm-microcontrollers/general-purpose-mcus/lpc800-cortex-m0-plus-/lpc845-breakout-board-for-lpc84x-family-mcus:LPC845-BRK
