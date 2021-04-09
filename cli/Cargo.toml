@@ -10,7 +10,11 @@ publish = false
 anyhow     = "*"
 clap       = "3.0.0-beta.2"
 postcard   = "*"
-serialport = "*"
 
 [dependencies.protocol]
 path = "../protocol"
+
+# Disable libudev dependency, which is not required and not available on CI.
+[dependencies.serialport]
+version          = "*"
+default-features = false
