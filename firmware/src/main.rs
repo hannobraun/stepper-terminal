@@ -8,7 +8,6 @@ use panic_rtt_target as _;
 #[rtic::app(device = lpc8xx_hal::pac, peripherals = false)]
 mod app {
     use heapless::{
-        consts::U128,
         spsc::{self, Queue},
         Vec,
     };
@@ -36,8 +35,8 @@ mod app {
     #[resources]
     struct Resources {
         #[task_local]
-        #[init(Queue(heapless::i::Queue::new()))]
-        usart_queue: Queue<u8, U128>,
+        #[init(Queue::new())]
+        usart_queue: Queue<u8, 128>,
 
         #[lock_free]
         delay: Delay,
@@ -46,10 +45,10 @@ mod app {
         usart: usart::Rx<USART0, Enabled<u8, AsyncMode>>,
 
         #[lock_free]
-        usart_queue_prod: spsc::Producer<'static, u8, U128>,
+        usart_queue_prod: spsc::Producer<'static, u8, 128>,
 
         #[lock_free]
-        usart_queue_cons: spsc::Consumer<'static, u8, U128>,
+        usart_queue_cons: spsc::Consumer<'static, u8, 128>,
 
         #[lock_free]
         stepper: Stepper<
@@ -168,7 +167,7 @@ mod app {
         let usart = cx.resources.usart_queue_cons;
         let stepper = cx.resources.stepper;
 
-        let mut buf: Vec<_, U128> = Vec::new();
+        let mut buf: Vec<_, 128> = Vec::new();
 
         loop {
             while let Some(word) = usart.dequeue() {

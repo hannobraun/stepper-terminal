@@ -22,6 +22,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "atomic-polyfill"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "30302dda7a66f8c55932ebf208f7def840743ff64d495e9ceffcd97c18f11d39"
+dependencies = [
+ "cortex-m 0.7.2",
+]
+
+[[package]]
 name = "autocfg"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -93,7 +102,7 @@ checksum = "643a210c1bdc23d0db511e2a576082f4ff4dcae9d0c37f50b431b8f8439d6d6b"
 dependencies = [
  "bare-metal 0.2.5",
  "bitfield",
- "embedded-hal 0.2.4",
+ "embedded-hal 0.2.5",
  "volatile-register",
 ]
 
@@ -128,7 +137,7 @@ dependencies = [
  "cortex-m 0.7.2",
  "cortex-m-rtic-macros",
  "generic-array 0.14.4",
- "heapless",
+ "heapless 0.6.1",
  "rtic-core",
  "rtic-monotonic",
  "version_check",
@@ -174,9 +183,9 @@ dependencies = [
 
 [[package]]
 name = "embedded-hal"
-version = "0.2.4"
+version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fa998ce59ec9765d15216393af37a58961ddcefb14c753b4816ba2191d865fcb"
+checksum = "db184d3fa27bc7a2344250394c0264144dfe0bc81a4401801dcb964b8dd172ad"
 dependencies = [
  "nb 0.1.3",
  "void",
@@ -202,9 +211,9 @@ dependencies = [
 
 [[package]]
 name = "fixed"
-version = "1.7.0"
+version = "1.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b3cd35dc49a38c999fb8bc36a8c8680ad97bf7b9b499d852b1d82e5dd09f73f9"
+checksum = "699e185585f30812375dab120221f3451b063aeff29dadf6fd3a3ac2e30c8486"
 dependencies = [
  "az",
  "half",
@@ -267,6 +276,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "hash32"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b0c35f58762feb77d74ebe43bdbc3210f09be9fe6742234d573bacc26ed92b67"
+dependencies = [
+ "byteorder",
+]
+
+[[package]]
 name = "hashbrown"
 version = "0.9.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -280,8 +298,19 @@ checksum = "634bd4d29cbf24424d0a4bfcbf80c6960129dc24424752a7d1d1390607023422"
 dependencies = [
  "as-slice",
  "generic-array 0.14.4",
- "hash32",
+ "hash32 0.1.1",
  "serde",
+ "stable_deref_trait",
+]
+
+[[package]]
+name = "heapless"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e94c13b78b595d2adbd708bce276664f1047f98fc32ddbf463b4c191158334a6"
+dependencies = [
+ "atomic-polyfill",
+ "hash32 0.2.1",
  "stable_deref_trait",
 ]
 
@@ -321,15 +350,15 @@ checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "libc"
-version = "0.2.93"
+version = "0.2.94"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9385f66bf6105b241aa65a61cb923ef20efc665cb9f9bb50ac2f0c4b7f378d41"
+checksum = "18794a8ad5b29321f790b55d93dfba91e125cb1a9edbd4f8e3150acc771c1a5e"
 
 [[package]]
 name = "lock_api"
-version = "0.4.3"
+version = "0.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5a3c91c24eae6777794bb1997ad98bbb87daf92890acab859f7eaa4320333176"
+checksum = "0382880606dff6d15c9476c416d18690b72742aa7b605bb6dd6ec9030fbf07eb"
 dependencies = [
  "scopeguard",
 ]
@@ -345,12 +374,11 @@ dependencies = [
 
 [[package]]
 name = "lpc845-pac"
-version = "0.3.0"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8a44c1d10aa28e2087f4032501d4d43894de0d66bc16a8c7a3a8b42ef04a4834"
+checksum = "e2019451dbdc797751c5a03a6228da8bcd06d97a3a4d59cc1162f90b0e7f5816"
 dependencies = [
- "bare-metal 0.2.5",
- "cortex-m 0.6.7",
+ "cortex-m 0.7.2",
  "cortex-m-rt",
  "vcell",
 ]
@@ -358,12 +386,12 @@ dependencies = [
 [[package]]
 name = "lpc8xx-hal"
 version = "0.9.0"
-source = "git+https://github.com/lpc-rs/lpc8xx-hal.git#d937e3fc0122f4522ffd2bfce44611c40b671ac7"
+source = "git+https://github.com/lpc-rs/lpc8xx-hal.git#a2b774e8a9ef025fb5119ddfb09e1b190e510896"
 dependencies = [
- "cortex-m 0.6.7",
+ "cortex-m 0.7.2",
  "cortex-m-rt",
  "crossterm",
- "embedded-hal 0.2.4",
+ "embedded-hal 0.2.5",
  "embedded-hal 1.0.0-alpha.4",
  "embedded-time",
  "lpc845-pac",
@@ -483,12 +511,12 @@ dependencies = [
 
 [[package]]
 name = "panic-rtt-target"
-version = "0.1.1"
+version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cfcd4deccf5edead7dcd0531448f0bab1b935e6d88e47225b4b7c6bd3a443180"
+checksum = "0d6ab67bc881453e4c90f958c657c1303670ea87bc1a16e87fd71a40f656dce9"
 dependencies = [
- "cortex-m 0.6.7",
- "rtt-target",
+ "cortex-m 0.7.2",
+ "rtt-target 0.3.1",
 ]
 
 [[package]]
@@ -528,7 +556,7 @@ version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "66acf3cf8ab62785852a0f67ae3bfcd38324da6561e52e7f4a049ca555c6d55e"
 dependencies = [
- "heapless",
+ "heapless 0.6.1",
  "postcard-cobs",
  "serde",
 ]
@@ -610,9 +638,9 @@ dependencies = [
 
 [[package]]
 name = "redox_syscall"
-version = "0.2.5"
+version = "0.2.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "94341e4e44e24f6b591b59e47a8a027df12e008d73fd5672dbea9cc22f4507d9"
+checksum = "742739e41cd49414de871ea5e549afb7e2a3ac77b589bcbebe8c82fab37147fc"
 dependencies = [
  "bitflags",
 ]
@@ -657,6 +685,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0869b4c5b6a6d8c5583fc473f9eb3423a170f77626b8c8a7fb18eddcda5770e2"
 dependencies = [
  "cortex-m 0.6.7",
+ "ufmt-write",
+]
+
+[[package]]
+name = "rtt-target"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "065d6058bb1204f51a562a67209e1817cf714759d5cf845aa45c75fa7b0b9d9b"
+dependencies = [
  "ufmt-write",
 ]
 
@@ -745,7 +782,7 @@ checksum = "a8f112729512f8e442d81f95a8a7ddf2b7c6b8a1a6f509a95864142b30cab2d3"
 [[package]]
 name = "stepper"
 version = "0.5.0"
-source = "git+https://github.com/flott-motion/stepper.git?branch=main#ee6a5d7f1f279c271dc273c290fbda001818e612"
+source = "git+https://github.com/flott-motion/stepper.git?branch=main#64ac9a0adc42165d7f40aed76ecc805627e6ad90"
 dependencies = [
  "embedded-hal 1.0.0-alpha.4",
  "embedded-time",
@@ -762,22 +799,22 @@ version = "0.1.0"
 dependencies = [
  "cortex-m-rtic",
  "fixed",
- "heapless",
+ "heapless 0.7.0",
  "lpc8xx-hal",
  "num-traits",
  "panic-rtt-target",
  "postcard",
  "protocol",
- "rtt-target",
+ "rtt-target 0.2.2",
  "stepper",
  "typenum",
 ]
 
 [[package]]
 name = "syn"
-version = "1.0.69"
+version = "1.0.72"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "48fe99c6bd8b1cc636890bcc071842de909d902c81ac7dab53ba33c421ab8ffb"
+checksum = "a1e8cdbefb79a9a5a65e0db8b47b723ee907b7c7f8496c76a1770b5c310bab82"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -798,9 +835,9 @@ checksum = "e87a2ed6b42ec5e28cc3b94c09982969e9227600b2e3dcbc1db927a84c06bd69"
 
 [[package]]
 name = "unicode-xid"
-version = "0.2.1"
+version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f7fe0bb3479651439c9112f72b6c505038574c9fbb575ed1bf3b797fa39dd564"
+checksum = "8ccb82d61f80a663efe1f787a51b16b5a51e3314d6ac365b08639f52387b33f3"
 
 [[package]]
 name = "vcell"
