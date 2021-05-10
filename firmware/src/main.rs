@@ -238,7 +238,7 @@ mod app {
                             // we're using reasonable values that should be well
                             // within the bounds of the data types. Detailed
                             // analysis hasn't happened though, so panics for
-                            // that reason can't be rules out.
+                            // that reason can't be ruled out.
                             stepper
                                 .move_to_position(
                                     Num::from_num(move_to.max_speed),
