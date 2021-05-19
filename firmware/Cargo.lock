@@ -61,6 +61,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cf1de2fe8c75bc145a2f577add951f8134889b4795d47466a54a5c846d691693"
 
 [[package]]
+name = "bytemuck"
+version = "1.5.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bed57e2090563b83ba8f83366628ce535a7584c9afa4c9fc0612a03925c6df58"
+
+[[package]]
 name = "byteorder"
 version = "1.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -188,12 +194,22 @@ dependencies = [
 ]
 
 [[package]]
-name = "fixed"
-version = "1.8.0"
+name = "embedded-time"
+version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "699e185585f30812375dab120221f3451b063aeff29dadf6fd3a3ac2e30c8486"
+checksum = "cc1aa2520307e7156300dc49771640c9263dc0202d1ddee971d77e7790568c07"
+dependencies = [
+ "num",
+]
+
+[[package]]
+name = "fixed"
+version = "1.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c97cabfe1ce0db024d64e9f688469e80a8e2b36cb792b09ba33e1ee8d21d00ae"
 dependencies = [
  "az",
+ "bytemuck",
  "half",
  "num-traits",
  "typenum",
@@ -277,7 +293,6 @@ dependencies = [
  "as-slice",
  "generic-array 0.14.4",
  "hash32 0.1.1",
- "serde",
  "stable_deref_trait",
 ]
 
@@ -289,6 +304,7 @@ checksum = "e94c13b78b595d2adbd708bce276664f1047f98fc32ddbf463b4c191158334a6"
 dependencies = [
  "atomic-polyfill",
  "hash32 0.2.1",
+ "serde",
  "stable_deref_trait",
 ]
 
@@ -364,14 +380,14 @@ dependencies = [
 [[package]]
 name = "lpc8xx-hal"
 version = "0.9.0"
-source = "git+https://github.com/lpc-rs/lpc8xx-hal.git#a2b774e8a9ef025fb5119ddfb09e1b190e510896"
+source = "git+https://github.com/lpc-rs/lpc8xx-hal.git#5ab3b06dca7c574f17a2587de4856224798ff30d"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
  "crossterm",
  "embedded-hal 0.2.5",
  "embedded-hal 1.0.0-alpha.4",
- "embedded-time",
+ "embedded-time 0.11.0",
  "lpc845-pac",
  "nb 1.0.0",
  "num-traits",
@@ -530,11 +546,11 @@ checksum = "acbf547ad0c65e31259204bd90935776d1c693cec2f4ff7abb7a1bbbd40dfe58"
 
 [[package]]
 name = "postcard"
-version = "0.6.1"
+version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "66acf3cf8ab62785852a0f67ae3bfcd38324da6561e52e7f4a049ca555c6d55e"
+checksum = "9083a4e478606d952014ad10e2fad31c43030942cec1f2bf8f12d4cc7089e62d"
 dependencies = [
- "heapless 0.6.1",
+ "heapless 0.7.0",
  "postcard-cobs",
  "serde",
 ]
@@ -641,7 +657,7 @@ version = "0.1.0-alpha.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ec3a03d55a8e67949c6940b0b5a7ebacbf1c2c9abd56d72a6c7653d7109f9b01"
 dependencies = [
- "embedded-time",
+ "embedded-time 0.10.1",
 ]
 
 [[package]]
@@ -698,18 +714,18 @@ checksum = "388a1df253eca08550bef6c72392cfe7c30914bf41df5269b68cbd6ff8f570a3"
 
 [[package]]
 name = "serde"
-version = "1.0.125"
+version = "1.0.126"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "558dc50e1a5a5fa7112ca2ce4effcb321b0300c0d4ccf0776a9f60cd89031171"
+checksum = "ec7505abeacaec74ae4778d9d9328fe5a5d04253220a85c4ee022239fc996d03"
 dependencies = [
  "serde_derive",
 ]
 
 [[package]]
 name = "serde_derive"
-version = "1.0.125"
+version = "1.0.126"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b093b7a2bb58203b5da3056c05b4ec1fed827dcfdb37347a8841695263b3d06d"
+checksum = "963a7dbc9895aeac7ac90e74f34a5d5261828f79df35cbed41e10189d3804d43"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -751,10 +767,11 @@ checksum = "a8f112729512f8e442d81f95a8a7ddf2b7c6b8a1a6f509a95864142b30cab2d3"
 [[package]]
 name = "stepper"
 version = "0.5.0"
-source = "git+https://github.com/flott-motion/stepper.git?branch=main#64ac9a0adc42165d7f40aed76ecc805627e6ad90"
+source = "git+https://github.com/flott-motion/stepper.git?branch=main#49f01b675528ec0526081f11fae8a54beaebb2a4"
 dependencies = [
+ "embedded-hal 0.2.5",
  "embedded-hal 1.0.0-alpha.4",
- "embedded-time",
+ "embedded-time 0.11.0",
  "nb 1.0.0",
  "num-traits",
  "paste",
