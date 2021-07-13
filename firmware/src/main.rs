@@ -32,25 +32,15 @@ mod app {
 
     use crate::num::{Num, SecondsToMrtTicks};
 
-    #[resources]
-    struct Resources {
-        #[task_local]
-        #[init(Queue::new())]
-        usart_queue: Queue<u8, 128>,
+    #[shared]
+    struct Shared {}
 
-        #[lock_free]
+    #[local]
+    struct Local {
         delay: Delay,
-
-        #[lock_free]
         usart: usart::Rx<USART0, Enabled<u8, AsyncMode>>,
-
-        #[lock_free]
         usart_queue_prod: spsc::Producer<'static, u8, 128>,
-
-        #[lock_free]
         usart_queue_cons: spsc::Consumer<'static, u8, 128>,
-
-        #[lock_free]
         stepper: Stepper<
             SoftwareMotionControl<
                 STSPIN220<
@@ -68,8 +58,8 @@ mod app {
         >,
     }
 
-    #[init(resources = [usart_queue])]
-    fn init(cx: init::Context) -> (init::LateResources, init::Monotonics) {
+    #[init(local = [usart_queue: Queue<u8, 128> = Queue::new()])]
+    fn init(cx: init::Context) -> (Shared, Local, init::Monotonics) {
         rtt_target::rtt_init_print!();
         rprint!("Initializing... ");
 
@@ -103,8 +93,7 @@ mod app {
             ..usart::Interrupts::default()
         });
 
-        let (usart_queue_prod, usart_queue_cons) =
-            cx.resources.usart_queue.split();
+        let (usart_queue_prod, usart_queue_cons) = cx.local.usart_queue.split();
 
         let gpio = p.GPIO.enable(&mut syscon.handle);
         let mrt = p.MRT0.split(&mut syscon.handle);
@@ -150,7 +139,8 @@ mod app {
         rprintln!("done.");
 
         (
-            init::LateResources {
+            Shared {},
+            Local {
                 delay,
                 usart: usart.rx,
                 usart_queue_prod,
@@ -161,11 +151,11 @@ mod app {
         )
     }
 
-    #[idle(resources = [delay, usart_queue_cons, stepper])]
+    #[idle(local = [delay, usart_queue_cons, stepper])]
     fn idle(cx: idle::Context) -> ! {
-        let delay = cx.resources.delay;
-        let usart = cx.resources.usart_queue_cons;
-        let stepper = cx.resources.stepper;
+        let delay = cx.local.delay;
+        let usart = cx.local.usart_queue_cons;
+        let stepper = cx.local.stepper;
 
         let mut buf: Vec<_, 128> = Vec::new();
 
@@ -253,10 +243,10 @@ mod app {
         }
     }
 
-    #[task(binds = USART0, resources = [usart, usart_queue_prod])]
+    #[task(binds = USART0, local = [usart, usart_queue_prod])]
     fn usart0(cx: usart0::Context) {
-        let usart = cx.resources.usart;
-        let queue = cx.resources.usart_queue_prod;
+        let usart = cx.local.usart;
+        let queue = cx.local.usart_queue_prod;
 
         loop {
             match usart.read() {
