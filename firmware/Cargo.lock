@@ -98,8 +98,17 @@ version = "0.6.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b6d8353767db816419630a76d5f1ad5b09610d22b67ceb59647df6a8abc667f8"
 dependencies = [
- "cortex-m-rt-macros",
+ "cortex-m-rt-macros 0.1.8",
  "r0",
+]
+
+[[package]]
+name = "cortex-m-rt"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "069533b58e25b635fac881eb6556616bd8f83a3e0ffe2b4b9619289ed14d465e"
+dependencies = [
+ "cortex-m-rt-macros 0.7.0",
 ]
 
 [[package]]
@@ -107,6 +116,17 @@ name = "cortex-m-rt-macros"
 version = "0.1.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4717562afbba06e760d34451919f5c3bf3ac15c7bb897e8b04862a7428378647"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "cortex-m-rt-macros"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f0f6f3e36f203cfedbc78b357fb28730aa2c6dc1ab060ee5c2405e843988d3c7"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -144,9 +164,9 @@ dependencies = [
 
 [[package]]
 name = "crossterm"
-version = "0.20.0"
+version = "0.21.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c0ebde6a9dd5e331cd6c6f48253254d117642c31653baa475e394657c59c1f7d"
+checksum = "486d44227f71a1ef39554c0dc47e44b9f4139927c75043312690c3f476d1d788"
 dependencies = [
  "bitflags",
  "crossterm_winapi",
@@ -179,9 +199,9 @@ dependencies = [
 
 [[package]]
 name = "embedded-hal"
-version = "1.0.0-alpha.4"
+version = "1.0.0-alpha.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f2260cabeacf4bda1df1a8d54f67047a9aadf02fe14cfab07649f2cec6a4693b"
+checksum = "a554c04648665230499563ccdfd1fcd719ef2d5a0af54bdc81c5d877fb556db4"
 dependencies = [
  "nb 1.0.0",
 ]
@@ -360,20 +380,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e2019451dbdc797751c5a03a6228da8bcd06d97a3a4d59cc1162f90b0e7f5816"
 dependencies = [
  "cortex-m",
- "cortex-m-rt",
+ "cortex-m-rt 0.6.14",
  "vcell",
 ]
 
 [[package]]
 name = "lpc8xx-hal"
 version = "0.9.0"
-source = "git+https://github.com/lpc-rs/lpc8xx-hal.git#cee8a0047ff38ec909c87b30b7435a225e3a29a1"
+source = "git+https://github.com/lpc-rs/lpc8xx-hal.git#98c03f2f175cad5817b8c10180e802ec3abf59aa"
 dependencies = [
  "cortex-m",
- "cortex-m-rt",
+ "cortex-m-rt 0.7.0",
  "crossterm",
  "embedded-hal 0.2.5",
- "embedded-hal 1.0.0-alpha.4",
+ "embedded-hal 1.0.0-alpha.5",
  "embedded-time",
  "lpc845-pac",
  "nb 1.0.0",
@@ -764,10 +784,10 @@ checksum = "a8f112729512f8e442d81f95a8a7ddf2b7c6b8a1a6f509a95864142b30cab2d3"
 [[package]]
 name = "stepper"
 version = "0.5.0"
-source = "git+https://github.com/flott-motion/stepper.git?branch=main#42dd1cc390314c6e51b6bdf946fabd7835eec28b"
+source = "git+https://github.com/flott-motion/stepper.git?branch=main#1754bc043d1d046d0791c445f04f83170fe47d32"
 dependencies = [
  "embedded-hal 0.2.5",
- "embedded-hal 1.0.0-alpha.4",
+ "embedded-hal 1.0.0-alpha.5",
  "embedded-time",
  "nb 1.0.0",
  "num-traits",

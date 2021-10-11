@@ -6,7 +6,7 @@ use core::{
 use lpc8xx_hal::mrt;
 use num_traits::Zero as _;
 use stepper::{
-    embedded_hal::timer,
+    embedded_hal::timer::nb::CountDown,
     embedded_time::duration::{
         Microseconds, Milliseconds, Nanoseconds, Seconds,
     },
@@ -27,7 +27,7 @@ impl<I> DelayToTicks<Num> for SecondsToMrtTicks<I>
 where
     I: mrt::Trait,
 {
-    type Ticks = <mrt::Channel<I> as timer::CountDown>::Time;
+    type Ticks = <mrt::Channel<I> as CountDown>::Time;
 
     type Error = Infallible;
 
