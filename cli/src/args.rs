@@ -1,14 +1,19 @@
-use clap::Clap;
 use protocol::Direction;
 
-#[derive(Clap, Debug)]
+#[derive(clap::Parser, Debug)]
 #[clap(name = "Stepper Terminal")]
 pub struct Args {
     #[clap(subcommand)]
     pub command: Command,
 }
 
-#[derive(Clap, Debug)]
+impl Args {
+    pub fn parse() -> Self {
+        <Self as clap::Parser>::parse()
+    }
+}
+
+#[derive(clap::Parser, Debug)]
 pub enum Command {
     /// Step the stepper motor
     Step(Step),
@@ -26,7 +31,7 @@ impl From<Command> for protocol::Command {
     }
 }
 
-#[derive(Clap, Debug)]
+#[derive(clap::Parser, Debug)]
 pub struct Step {
     /// The number of steps to take (negative value means backward movement)
     #[clap(short, long, default_value = "200")]
@@ -53,7 +58,7 @@ impl From<Step> for protocol::Step {
     }
 }
 
-#[derive(Clap, Debug)]
+#[derive(clap::Parser, Debug)]
 pub struct MoveTo {
     /// The target step (absolute position)
     pub target_step: i32,

@@ -2,7 +2,6 @@ mod args;
 mod serial;
 
 use anyhow::anyhow;
-use clap::Clap as _;
 
 use self::args::Args;
 
