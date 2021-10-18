@@ -8,6 +8,12 @@ pub struct Args {
     pub command: Command,
 }
 
+impl Args {
+    pub fn parse() -> Self {
+        <Self as Clap>::parse()
+    }
+}
+
 #[derive(Clap, Debug)]
 pub enum Command {
     /// Step the stepper motor
