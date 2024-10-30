@@ -1,7 +1,5 @@
 # Stepper Terminal
 
-**Please consider supporting this project financially. More information below.**
-
 ## About
 
 Allows you to control a stepper motor from your PC via a CLI app that sends commands to a firmware application running on an [LPC845-BRK] development board.
@@ -80,14 +78,6 @@ You can also use `--help` on specific subcommands:
 ``` bash
 cargo run -- move-to --help
 ```
-
-
-## Funding
-
-If you're getting value out of this project, Stepper or other libraries from the [Flott] toolkit, please consider supporting us financially. Your sponsorship helps to keep the project healthy and moving forward.
-
-[Hanno Braun][@hannobraun], maintainer and original creator of this application, is [accepting sponsorship](https://github.com/sponsors/hannobraun).
-
 
 ## License
 
