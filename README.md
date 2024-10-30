@@ -12,10 +12,8 @@ in Rust.
 
 ## Status
 
-This project is usable, but doesn't yet expose all of the features of Stepper.
-Check out the
-[list of issues](https://github.com/flott-motion/stepper-terminal/issues) for
-some documented limitations. Help in filling the gaps is very welcome!
+This project hasn't been updated in years, and I don't expect to resume working
+on it.
 
 ## Usage
 
